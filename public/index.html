@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Palms Hotel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar navbar-expand-lg bg-primary text-white">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center text-white" href="#">
+                <img src="../image/logo.PNG" alt="Logo" width="40" class="me-2">
+                <span>The Palms Hotel</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="booking.html">Booking</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="hero" class="hero vh-100 d-flex align-items-center text-white text-center position-relative">
+        <div class="container position-relative d-flex justify-content-between align-items-center">
+            <div class="content text-start col-md-6 text-dark">
+                <h1>Setiap Tamu, Setiap Momen, Selalu Spesial</h1>
+                <p>Di hotel kami, Anda bukan hanya tamu, tetapi keluarga. Kami berkomitmen memberikan pengalaman terbaik melalui layanan personal yang dirancang untuk memenuhi kebutuhan Anda.</p>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <div class="square" style="width: 500px; height: 500px; overflow: hidden; border-radius: 10%;">
+                    <img src="../image/hero.jpg" alt="Hero Image" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- product -->
+    <section id="products" class="products py-5">
+        <div class="container">
+            <h1 class="text-center mb-5">Products</h1>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="card" style="height: 400px;">
+                        <img src="../image/kamar1.jpg" class="card-img-top" alt="Product 1" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Superior Room</h5>
+                            <p class="card-text">A cozy, modern room with a minimalist design, featuring a queen-size bed, air conditioning, a flat-screen TV, and a private bathroom with a shower. Perfect for travelers seeking comfort at an affordable price.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="height: 400px;">
+                        <img src="../image/kamar2.jpg" class="card-img-top" alt="Product 2" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Deluxe Room</h5>
+                            <p class="card-text">A spacious room with an elegant touch, equipped with a king-size bed, a sitting area, city or garden views, a coffee/tea maker, and a bathroom with a bathtub. Ideal for a more luxurious and relaxing stay.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="height: 400px;">
+                        <img src="../image/kamar3.jpg" class="card-img-top" alt="Product 3" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Suite Room</h5>
+                            <p class="card-text">An exclusive room with a separate living area, a king-size bed, and premium amenities such as a minibar, private balcony, and 24-hour room service. The perfect choice for guests seeking maximum luxury and privacy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Partner -->
+<section class="partners py-5">
+    <div class="container text-center">
+        <h2>Our Partners</h2>
+        <div class="d-flex justify-content-center flex-wrap mt-4">
+            <img src="../image/pt1.png" class="m-2" alt="Marriott" style="height: 100px; object-fit: contain;">
+            <img src="../image/pt2.png" class="m-2" alt="Hilton" style="height: 100px; object-fit: contain;">
+            <img src="../image/pt3.png" class="m-2" alt="Hyatt" style="height: 100px; object-fit: contain;">
+            <img src="../image/pt4.png" class="m-2" alt="AccorHotels" style="height: 100px; object-fit: contain;">
+            <img src="../image/pt5.png" class="m-2" alt="IHG" style="height: 100px; object-fit: contain;">
+            <img src="../image/pt6.png" class="m-2" alt="IHG" style="height: 100px; object-fit: contain;">
+        </div>
+    </div>
+</section>
+
+
+    <!-- Contact -->
+    <section id="contact" class="contact py-5 ">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Us</h2>
+            <form class="mx-auto" style="max-width: 500px;" id="contactForm">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="your@mail.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+        </div>
+    </section>
+
+<script src="js/contact.js"></script>
+
+<!-- Footer -->
+    <footer class="footer bg-primary text-white py-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="../image/logo.PNG" alt="Logo" width="40" class="me-2">
+                <h2 class="m-0">The Palms Hotel</h2>
+            </div>
+            <div>
+                <ul class="list-unstyled mb-0">
+                    <li>Customer Service</li>
+                    <li>Email: farchanang@gmail.com</li>
+                    <li>WhatsApp: +987654321</li>
+                </ul>
+                <p>&copy; 2024 Farhan Munada. Semua hak cipta dilindungi.</p>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/IDCivilization" class="text-white me-3" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/FarhanMunada" class="text-white me-3" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/farhan_munada/" class="text-white" target="_blank"><i class="fab fa-instagram"></i></a>                
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
