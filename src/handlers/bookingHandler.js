@@ -6,10 +6,10 @@ const saveBooking = (req, res) => {
     db.query(query, [name, email, phone, checkin, checkout, roomtype], (err, result) => {
         if (err) {
             console.error('Error inserting data:', err);
-            res.status(500).send('Error saving booking.');
+            res.status(500).json({ error: 'Error saving booking.' }); // Changed to JSON response
             return;
         }
-        res.status(200).send('Booking saved successfully.');
+        res.status(200).json({ message: 'Booking saved successfully.' }); // Changed to JSON response
     });
 };
 
