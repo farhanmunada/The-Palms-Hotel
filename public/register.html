@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - The Palms Hotel</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
+    <div class="container text-center">
+        <div class="card shadow-lg mx-auto overflow-hidden" style="max-width: 800px;">
+            <div class="row no-gutters">
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="card-body w-100">
+                        <h5 class="card-title text-center text-primary font-weight-bold mb-4">Register</h5>
+                        <form id="registerForm" class="text-left">
+                            <div class="form-group mb-3">
+                                <label for="username" class="float-left">Username</label>
+                                <input type="text" class="form-control text-left" id="username" name="username" placeholder="Enter username">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="email" class="float-left">Email address</label>
+                                <input type="email" class="form-control text-left" id="email" name="email" placeholder="Enter email">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password" class="float-left">Password</label>
+                                <input type="password" class="form-control text-left" id="password" name="password" placeholder="Password">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="confirm-password" class="float-left">Confirm Password</label>
+                                <input type="password" class="form-control text-left" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+                            </div>
+                            <div class="d-flex justify-content-between mb-4">
+                                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="login.html" class="btn btn-link">Already have an account? Login</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block" style="background-image: url('./image/gate.jpg'); background-size: cover; background-position: center;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./js/register.js"></script>
+</body>
+</html>
