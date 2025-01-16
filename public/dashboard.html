@@ -17,6 +17,7 @@
         <div class="bg-primary text-white p-3 d-flex flex-column" style="width: 15%;">
             <a href="#customer" class="text-white d-block py-2" onclick="showSection('customer')">Customer</a>
             <a href="#contact" class="text-white d-block py-2" onclick="showSection('contact')">Contact</a>
+            <a href="#user" class="text-white d-block py-2" onclick="showSection('user')">User</a>
         </div>
         <div class="flex-grow-1 p-3">
             <div id="customer-section">
@@ -55,6 +56,24 @@
                     </thead>
                     <tbody id="contact-table-body">
                         <!-- Contact data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="user-section" style="display: none;">
+                <h2>User</h2>
+                <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addUserModal">Add User</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body">
+                        <!-- User data will be inserted here by JavaScript -->
                     </tbody>
                 </table>
             </div>
@@ -211,14 +230,78 @@
         </div>
     </div>
 
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm">
+                        <div class="form-group">
+                            <label for="userName">Username</label>
+                            <input type="text" class="form-control" id="userName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input type="email" class="form-control" id="userEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Password</label>
+                            <input type="password" class="form-control" id="userPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUserForm">
+                        <input type="hidden" id="editUserId">
+                        <div class="form-group">
+                            <label for="editUsername">Username</label>
+                            <input type="text" class="form-control" id="editUsername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserEmail">Email</label>
+                            <input type="email" class="form-control" id="editUserEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserPassword">Password</label>
+                            <input type="password" class="form-control" id="editUserPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
     <script>
         function showSection(sectionId) {
             document.getElementById('customer-section').style.display = 'none';
             document.getElementById('contact-section').style.display = 'none';
+            document.getElementById('user-section').style.display = 'none';
             document.getElementById(sectionId + '-section').style.display = 'block';
         }
     </script>

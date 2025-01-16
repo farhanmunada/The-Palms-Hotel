@@ -1,6 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // Customer Management
+    
     fetch('http://localhost:5000/api/customers')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('Fetched customers:', data);
             const customerTableBody = document.getElementById('customer-table-body');
@@ -146,8 +154,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Contact Management
+
     fetch('http://localhost:5000/api/contacts')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('Fetched contacts:', data);
             const contactTableBody = document.getElementById('contact-table-body');
@@ -272,6 +287,151 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .catch(error => console.error('Error deleting contact:', error));
+        }
+    };
+
+    // User Management
+
+    fetch('http://localhost:5000/api/users')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched users:', data);
+            const userTableBody = document.getElementById('user-table-body');
+            userTableBody.innerHTML = '';
+            data.sort((a, b) => b.id - a.id);
+            data.forEach(user => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-id', user.id);
+
+                const maskedPassword = '*'.repeat(8);
+
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td>${maskedPassword}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="editUser(${user.id})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">Delete</button>
+                    </td>
+                `;
+                userTableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching user data:', error));
+
+    document.getElementById('addUserForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const newUser = {
+            username: document.getElementById('userName').value,
+            email: document.getElementById('userEmail').value,
+            password: document.getElementById('userPassword').value
+        };
+        fetch('http://localhost:5000/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newUser)
+        })
+        .then(response => response.json())
+        .then(user => {
+            console.log('Added user:', user);
+            const userTableBody = document.getElementById('user-table-body');
+            const row = document.createElement('tr');
+            row.setAttribute('data-id', user.id);
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td>${user.password}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" onclick="editUser(${user.id})">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">Delete</button>
+                </td>
+            `;
+            userTableBody.prepend(row); // Add new user to the top
+            $('#addUserModal').modal('hide');
+        })
+        .catch(error => console.error('Error adding user:', error));
+    });
+
+    // Fungsi untuk membuka modal edit dan mengisi form dengan data user
+    window.editUser = function(id) {
+        console.log('Edit button clicked for user ID:', id);  // Debugging
+        fetch(`http://localhost:5000/api/users/${id}`)
+            .then(response => response.json())
+            .then(user => {
+                console.log('Fetched user data:', user);  // Debugging
+                // Mengisi form dengan data user yang diambil
+                document.getElementById('editUserId').value = user.id;
+                document.getElementById('editUsername').value = user.username;
+                document.getElementById('editUserEmail').value = user.email;
+                document.getElementById('editUserPassword').value = user.password;
+                // Menampilkan modal
+                $('#editUserModal').modal('show');
+            })
+            .catch(error => console.error('Error fetching user data:', error));
+    };
+
+        // Form submit untuk mengupdate data user
+        document.getElementById('editUserForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userId = document.getElementById('editUserId').value;
+            const updatedUser = {
+                username: document.getElementById('editUsername').value,
+                email: document.getElementById('editUserEmail').value,
+                password: document.getElementById('editUserPassword').value
+            };
+            
+            fetch(`http://localhost:5000/api/users/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedUser)
+            })
+            .then(response => response.json())
+            .then(user => {
+                console.log('Updated user:', user);
+                const row = document.querySelector(`#user-table-body tr[data-id='${user.id}']`);
+                if (row) {
+                    row.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.password}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="editUser(${user.id})">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">Delete</button>
+                        </td>
+                    `;
+                }
+                $('#editUserModal').modal('hide');
+            })
+            .catch(error => console.error('Error updating user:', error));
+        });
+
+
+    window.deleteUser = function(id) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            fetch(`http://localhost:5000/api/users/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Deleted user:', result);
+                const row = document.querySelector(`#user-table-body tr[data-id='${id}']`);
+                if (row) {
+                    row.remove();
+                }
+            })
+            .catch(error => console.error('Error deleting user:', error));
         }
     };
 });
